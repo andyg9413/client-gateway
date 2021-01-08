@@ -1,0 +1,19 @@
+
+
+<div>
+  <form [formGroup]="addCusForm" (change)="formChanged()">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Name" required id="name">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="IPv4" required id="ip">
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button (click)="openDialog()">Save</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,52 @@
+<mat-paginator [length]="gateways.length" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
+               (page)="handlePage($event)">
+</mat-paginator>
+<ul>
+  <button mat-raised-button color="primary" style="margin: 10px" (click)="openDialogAddGateway()">Add</button>
+  <li *ngFor="let gateway of gateways | paginate:page_size:page_number; let i=index;">
+    <ul>
+        <li>ID: {{gateway._id}}</li>
+        <li>Name: {{gateway.name}}</li>
+        <li>IPv4: {{gateway.ip}}</li>
+      <section>
+        <div class="example-label"></div>
+        <div class="example-button-row">
+          <button mat-button color="primary" (click)="openDialog(i)">Add device</button>
+        </div>
+      </section>
+      <li *ngIf="gateway.devices.length > 0">
+        Devices
+          <div *ngFor="let device of gateway.devices; let j=index;">
+            <ul>
+              <li >ID: {{device._id}}</li>
+              <li>Vendor: {{device.vendor}}</li>
+              <li>Status: {{device.status}}</li>
+              <li>Date created: {{device.createdAt}}</li>
+              <section>
+                <div class="example-label"></div>
+                <div class="example-button-row">
+                  <button mat-button color="accent" (click)="openDialogUpdate(i, j)">Update</button>
+                  <button mat-button color="warn" (click)="openDialogDelete(i, j)">Delete</button>
+                </div>
+              </section>
+              <br/>
+            </ul>
+
+          </div>
+      </li>
+      <li *ngIf="gateway.devices.length === 0"> No assigned devices</li>
+    </ul>
+    <section>
+      <div class="example-label"></div>
+      <div class="example-button-row">
+        <button mat-raised-button color="accent" style="margin: 10px" (click)="openDialogUpdateGateway(i)">Update</button>
+        <button mat-raised-button color="warn" style="margin: 10px" (click)="openDialogDeleteGateway(i)">Delete</button>
+      </div>
+    </section>
+    <br/>
+    <mat-divider></mat-divider>
+    <br/>
+  </li>
+</ul>
+
+
